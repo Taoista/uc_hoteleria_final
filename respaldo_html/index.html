@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Hotel - VERANUM</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+       body {
+            background-color: #f8f9fa;
+        }
+        .hotel-card {
+            transition: transform 0.2s;
+        }
+        .hotel-card:hover {
+            transform: scale(1.05);
+        }
+        .card-img-top {
+            height: 500px;
+            object-fit: cover;
+        }
+        .banner-img {
+            width: 10%;
+            height: auto; /* Disminuir la altura del banner */
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center mb-5">
+            <a href="index.html">
+                <img src="fotos/logo.png" class="banner-img" alt="Banner Principal">
+            </a>
+            <h1>Bienvenido a Hoteles VERANUM</h1>
+            <p>Seleccione un hotel para más detalles o realizar una reserva</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card hotel-card">
+                    <img src="fotos/f1.jpg" class="card-img-top" alt="Hotel Santiago">
+                    <div class="card-body">
+                        <h5 class="card-title">Hotel Santiago</h5>
+                        <p class="card-text">Ubicado en el corazón de Santiago, ofrece comodidad y servicios de alta calidad.</p>
+                        <a href="santiago.html" class="btn btn-primary">Seleccionar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card hotel-card">
+                    <img src="fotos/f2.jpg" class="card-img-top" alt="Hotel Valparaísos">
+                    <div class="card-body">
+                        <h5 class="card-title">Hotel Valparaíso</h5>
+                        <p class="card-text">Situado en la hermosa costa de Valparaíso, ideal para disfrutar del mar y el sol.</p>
+                        <a href="valparaiso.html" class="btn btn-primary">Seleccionar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

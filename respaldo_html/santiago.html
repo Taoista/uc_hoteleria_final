@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Hotel Santiago - VERANUM</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .hotel-banner {
+            height: 200px;
+            background: url('santiago_banner.jpg') center center/cover no-repeat;
+        }
+        .hotel-info, .room-info, .services-info, .reservation-form {
+            margin-bottom: 30px;
+        }
+        .banner-img {
+            width: 10%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Banner con el logo que redirige a la página de inicio -->
+        <div class="text-center mb-5">
+            <a href="index.html">
+                <img src="fotos/logo.png" class="banner-img" alt="Banner Principal">
+            </a>
+            <h1>Detalles del Hotel Santiago</h1>
+        </div>
+        
+        <!-- Banner del hotel -->
+        <div class="hotel-banner mb-5"></div>
+
+        <!-- Información del hotel -->
+        <div class="hotel-info">
+            <h2>Hotel Santiago</h2>
+            <p>Ubicado en el corazón de Santiago, el Hotel Santiago ofrece comodidad y servicios de alta calidad para todos nuestros huéspedes.</p>
+            <p><strong>Dirección:</strong> Av. Libertador Bernardo O'Higgins 1234, Santiago, Región Metropolitana</p>
+        </div>
+
+        <!-- Tipos de habitaciones disponibles -->
+        <div class="room-info">
+            <h3>Tipos de Habitaciones</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="fotos/simple.jpg" class="card-img-top" alt="Habitación Individual">
+                        <div class="card-body">
+                            <h5 class="card-title">Habitación Individual</h5>
+                            <p class="card-text">Cama individual, baño privado, TV, WiFi.</p>
+                            <p class="card-text"><strong>Precio: $50,000 CLP por noche</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="fotos/doble.jpg" class="card-img-top" alt="Habitación Doble">
+                        <div class="card-body">
+                            <h5 class="card-title">Habitación Doble</h5>
+                            <p class="card-text">Cama matrimonial, baño privado, TV, WiFi.</p>
+                            <p class="card-text"><strong>Precio: $70,000 CLP por noche</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="fotos/suite.jpg" class="card-img-top" alt="Suite">
+                        <div class="card-body">
+                            <h5 class="card-title">Suite</h5>
+                            <p class="card-text">2 camas matrimoniales, baño privado, TV, WiFi, Jacuzzi.</p>
+                            <p class="card-text"><strong>Precio: $120,000 CLP por noche</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+        <!-- Servicios extras -->
+        <div class="services-info">
+            <h3>Servicios Extras</h3>
+            <ul>
+                <li>Gimnasio - $10,000 CLP por día</li>
+                <li>Piscina - $15,000 CLP por día</li>
+                <li>Spa - $20,000 CLP p…

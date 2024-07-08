@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Hotel - VERANUM</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .hotel-banner {
+            height: 300px;
+            background: center center/cover no-repeat;
+        }
+        .hotel-info, .room-info, .services-info, .reservation-form {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Banner del hotel -->
+        <div id="hotelBanner" class="hotel-banner mb-5"></div>
+
+        <!-- Información del hotel -->
+        <div class="hotel-info">
+            <h2 id="hotelName"></h2>
+            <p id="hotelDescription"></p>
+            <p id="hotelAddress"><strong>Dirección:</strong></p>
+        </div>
+
+        <!-- Tipos de habitaciones disponibles -->
+        <div class="room-info">
+            <h3>Tipos de Habitaciones</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img id="roomImg1" class="card-img-top" alt="Habitación Individual">
+                        <div class="card-body">
+                            <h5 id="roomType1" class="card-title"></h5>
+                            <p id="roomDesc1" class="card-text"></p>
+                            <p id="roomPrice1" class="card-text"><strong></strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img id="roomImg2" class="card-img-top" alt="Habitación Doble">
+                        <div class="card-body">
+                            <h5 id="roomType2" class="card-title"></h5>
+                            <p id="roomDesc2" class="card-text"></p>
+                            <p id="roomPrice2" class="card-text"><strong></strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img id="roomImg3" class="card-img-top" alt="Suite">
+                        <div class="card-body">
+                            <h5 id="roomType3" class="card-title"></h5>
+                            <p id="roomDesc3" class="card-text"></p>
+                            <p id="roomPrice3" class="card-text"><strong></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servicios extras -->
+        <div class="services-info">
+            <h3>Servicios Extras</h3>
+            <ul id="servicesList"></ul>
+        </div>
+
+        <!-- Formulario de reserva -->
+        <div class="reservation-form">
+            <h3>Realizar una Reserva</h3>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputNombre">Nombre</label>
+                        <input type="text" class="form-control" id="inputNombre" placeholder="Nombre Completo" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Correo Electrónico" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputHabitacion">Tipo de Habitación</label>
+                        <select id="inputHabitacion" class="form-control" required>
+                            <option value="individual">Habitación Individual</option>
+                            <option value="doble">Habitación Doble</option>
+                            <option value="suite">Suite</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputServicios">Servicios Extras</label>
+                        <select id="inputServicios" class="form-control" multiple>
+                            <option value="gimnasio">Gimnasio</option>
+                            <option value="piscina">Piscina</option>
+                            <option value="spa">Spa</option>
+                            <option value="tenis">Canchas de Tenis</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputFechaEntrada">Fecha de Entrada</label>
+                        <input type="date" class="form-control" id="inputFechaEntrada" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputFechaSalida">Fecha de Salida</label>
+                        <input type="date" class="form-control" id="inputFechaSalida" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Reservar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function() {
+            // Obtener el parámetro de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const hotel = urlParams.get('hotel');
+
+            // Información de los hoteles
+            const hoteles = {
+                'Hotel Santiago': {
+                    banner: 'santiago_banner.jpg',
+                    description: 'Ubicado en el corazón de Santiago, el Hotel Santiago ofrece comodidad y servicios de alta calidad para todos nuestros huéspedes.',
+                    address: 'Av. Libertador Bernardo O\'Higgins 1234, Santiago, Región Metropolitana',
+                    rooms: [
+                        {
+                            type: 'Habitación Individual',
+                            desc: 'Cama individual, baño privado, TV, WiFi.',
+                            price: '$50,000 CLP por noche',
+                            img: 'habitacion_individual.jpg'
+                        },
+                        {
+                            type: 'Habitación Doble',
+                            desc: 'Cama matrimonial, baño privado, TV, WiFi.',
+                            price: '$70,000 CLP por noche',
+                            img: 'habitacion_doble.jpg'
+                        },
+                        {
+                            type: 'Suite',
+                            desc: '2 camas matrimoniales, baño privado, TV, WiFi, Jacuzzi.',
+                            price: '$120,000 CLP por noche',
+                            img: 'suite.jpg'
+                        }
+                    ],
+                    services: [
+                        'Gimnasio - $10,000 CLP por día',
+                        'Piscina - $15,000 CLP por día',
+                        'Spa - $20,000 CLP por día',
+                        'Canchas de Tenis - $12,000 CLP por día'
+                    ]
+                },
+                'Hotel Valparaíso': {
+                    banner: 'valparaiso_banner.jpg',
+                    description: 'Situado en la hermosa costa de Valparaíso, ideal para disfrutar del mar y el sol.',
+                    address: 'Av. Altamirano 1234, Valparaíso, Región de Valparaíso',
+                    rooms: [
+                        {
+                            type: 'Habitación Individual',
+                            desc: 'Cama individual, baño privado, TV, WiFi.',
+                            price: '$45,000 CLP por noche',
+                            img: 'habitacion_individual.jpg'
+                        },
+                        {
+                            type: 'Habitación Doble',
+                            desc: 'Cama matrimonial, baño privado, TV, WiFi.',
+                            price: '$65,000 CLP por noche',
+                            img: 'habitacion_doble.jpg'
+                        },
+                        {
+                            type: 'Suite',
+                            desc: '2 camas matrimoniales, baño privado, TV, WiFi, Jacuzzi.',
+                            price: '$110,000 CLP por noche',
+                            img: 'suite.jpg'
+                        }
+                    ],
+                    services: [
+                        'Gimnasio - $8,000 CLP por día',
+                        'Piscina - $12,000 CLP por día',
+                        'Spa - $18,000 CLP por día',
+                        'Canchas de Tenis - $10,000 CLP por día'
+                    ]
+                }
+            };
+
+            // Verificar si el hotel existe en la información
+            if (hoteles[hotel]) {
+                const hotelInfo = hoteles[hotel];
+                $('#hotelBanner').css('background-image', `url(${hotelInfo.banner})`);
+                $('#hotelName').text(hotel);
+                $('#hotelDescription').text(hotelInfo.description);
+                $('#hotelAddress').append(hotelInfo.address);
+
+                // Llenar información de habitaciones
+                hotelInfo.rooms.forEach((room, index) => {
+                    $(`#roomImg${index+1}`).attr('src', room.img);
+                    $(`#roomType${index+1}`).text(room.type);
+                    $(`#roomDesc${index+1}`).text(room.desc);
+                    $(`#roomPrice${index+1} strong`).text(room.price);
+                });
+
+                // Llenar servicios extras
+                hotelInfo.services.forEach(service => {
+                    $('#servicesList').append(`<li>${service}</li>`);
+                });
+            } else {
+                // Si el hotel no existe, mostrar un mensaje de error
+                $('.container').html('<h2>Hotel no encontrado</h2>');
+            }
+
+            // Manejar el envío del formulario
+            $('form').on('submit', function(event) {
+                event.preventDefault();
+                alert('Reserva realizada con éxito!');
+                // Aquí puedes agregar la lógica para enviar los datos del formulario a tu servidor
+            });
+        });
+    </script>
+</body>
+</html>
