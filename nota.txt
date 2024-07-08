@@ -1,0 +1,33 @@
+-> inventario
+-> ubicacion -data general
+-> habitaciones
+-> tipos de habitaciones
+-> servicios extras
+
+
+CRUD
+altiro
+=> leer
+    hoteles
+    habitaciones
+    servicios
+    extras
+    precios
+
+=> crear
+    hoteles
+    habitaciones
+    servicios
+    extras
+    precios
+
+=> editar
+    hoteles
+    habitaciones
+    sericios
+    extras
+    precios
+
+=> elminar
+    hoteles
+
