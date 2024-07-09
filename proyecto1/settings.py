@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import pymysql
 pymysql.install_as_MySQLdb()
-
+from eloquent import DatabaseManager, Model
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,6 +95,22 @@ DATABASES = {
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+config = {
+    'mysql': {
+        'driver': 'mysql',
+        'host': 'localhost',
+        'database': 'inventoryweb',
+        'username': 'root',
+        'password': '7340458',
+        'prefix': '',
+        'port':'3307'
+    }
+}
+
+db = DatabaseManager(config)
+Model.set_connection_resolver(db)
 
 
 

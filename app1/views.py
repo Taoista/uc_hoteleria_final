@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import TipoHabitacion, Servicios,Hoteles
+from .models import Hoteles
 import json
 # Create your views here.
 TEMPLATE_DIRS = (
@@ -8,7 +8,13 @@ TEMPLATE_DIRS = (
 )
 
 def index(request):
-    context = {}
+
+    hoteles = Hoteles.objects.all()
+
+
+    context = {
+        'hoteles': hoteles,
+    }
     return render(request, "inventario/index.html", context)
 
 

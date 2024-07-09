@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Hoteles, TipoHabitacion, CantidadTipoHabitacion, Servicios
+from .models import Hoteles
 
 # Register your models here.
 
 admin.site.register(Hoteles)
-admin.site.register(TipoHabitacion)
-admin.site.register(CantidadTipoHabitacion)
-admin.site.register(Servicios)
+# admin.site.register(TipoHabitacion)
+# admin.site.register(CantidadTipoHabitacion)
+# admin.site.register(Servicios)
 # admin.site.register(Habitacion)
 # admin.site.register(ServicioExtra)
 # admin.site.register(Reserva)

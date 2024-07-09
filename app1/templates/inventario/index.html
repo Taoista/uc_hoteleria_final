@@ -13,11 +13,12 @@
 <body>
     <h1>Inventario de Hoteles VERANUM</h1>
     <button class="btn-actualizar" onclick="actualizarInventario()">Actualizar Inventario</button>
-
+    
+    {% for item in hoteles %}
     <div class="hotel">
-        <h2>Hotel Santiago</h2>
+        <h2>{{ item.nombre }}</h2>
         <div class="hotel-details">
-            <p><strong>Ubicación:</strong> Santiago, Chile</p>
+            <p><strong>Ubicación:</strong> {{ item.direccion }}</p>
             <p><strong>Cantidad de Habitaciones:</strong> 100</p>
         </div>
         <div class="habitaciones">
@@ -35,7 +36,8 @@
             </ul>
         </div>
     </div>
-
+    {% endfor %}
+<!-- 
     <div class="hotel">
         <h2>Hotel V Región</h2>
         <div class="hotel-details">
@@ -56,8 +58,8 @@
                 <li>Servicio: Piscina, Precio: $15.00</li>
             </ul>
         </div>
-    </div>
+    </div> -->
 
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
 </html>

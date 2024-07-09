@@ -1,0 +1,7 @@
+
+1- descargar proyecto
+2- ejecter freeze
+3- ejecutar migraciones
+4- ejecer seeders
+	-> python manage.py seed_hoteles
+5-
