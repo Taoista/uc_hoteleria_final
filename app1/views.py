@@ -15,7 +15,7 @@ def index(request):
     context = {
         'hoteles': hoteles,
     }
-    
+
     return render(request, "inventario/index.html", context)
 
 
