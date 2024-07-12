@@ -2,6 +2,8 @@
 1- descargar proyecto
 2- ejecter freeze
 3- ejecutar migraciones
+	-> makemigration -> crear la migración
+	-> migrate -> ejectuar la migración en la db
 4- ejecer seeders
 	-> python manage.py seed_hoteles
 5-

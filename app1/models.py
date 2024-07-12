@@ -11,3 +11,19 @@ class Hoteles(models.Model):
         return self.nombre
 
 
+class Habitaciones(models.Model):
+    id_habitacion = models.AutoField(db_column='id', primary_key=True) 
+    titulo = models.CharField(max_length=100)
+    caracteristicas = models.CharField(max_length=500)
+    precio = models.IntegerField();
+
+    def _str_(self):
+        return self.nombre
+
+class ServiciosExtras(models.Model):
+    id_serv_extras = models.AutoField(db_column='id', primary_key=True) 
+    titulo = models.CharField(max_length=100)
+    precio = models.IntegerField();
+
+    def _str_(self):
+        return self.nombre
