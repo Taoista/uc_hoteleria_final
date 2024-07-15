@@ -15,7 +15,7 @@ class Habitaciones(models.Model):
     id_habitacion = models.AutoField(db_column='id', primary_key=True) 
     titulo = models.CharField(max_length=100)
     caracteristicas = models.CharField(max_length=500)
-    precio = models.IntegerField();
+    precio = models.IntegerField()
 
     def _str_(self):
         return self.nombre

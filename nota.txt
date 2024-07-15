@@ -31,3 +31,12 @@ altiro
 => elminar
     hoteles
 
+? esto es cuando tengas instalado algun motor que no sea Sqlite
+pip cryptography
+
+migraciones
+? generar las migraciones
+ python .\manage.py makemigrations
+
+ ? crear las migraciones
+ python .\manage.py migrate

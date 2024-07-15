@@ -19,8 +19,10 @@ from django.urls import path
 from django.conf.urls import include
 
 urlpatterns = [
+    # ? panel de administrador
+    path('admin/', admin.site.urls),
+    
     path('', include('app1.urls')),
-    # path('admin/', admin.site.urls),
     # path('alumnos', include('app1.urls')),
 
     # path('hoteles/create', include('app1.urls')),
