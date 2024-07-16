@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hoteles, Habitaciones, ServiciosExtras
+from .models import Hoteles, Habitaciones, ServiciosExtras,HotelHabitacion
 
 # Register your models here.
 
@@ -7,25 +7,34 @@ from .models import Hoteles, Habitaciones, ServiciosExtras
 class HotelAdmin(admin.ModelAdmin):
     # ? ver los campos editar los campos en el admin
     fields = ['nombre',
-            'direccion']
+            'direccion', 'imagen']
 
     # ? verlos en el admin
-    list_display = ['nombre', 'direccion']
+    list_display = ['nombre', 'direccion', 'imagen']
 
 @admin.register(Habitaciones)
 class HabitacionesAdmin(admin.ModelAdmin):
     fields = ['titulo',
             'caracteristicas',
-            'precio']
+            'precio', 'imagen']
 
-    list_display = ['titulo', 'caracteristicas', 'precio']
+    list_display = ['titulo', 'caracteristicas', 'precio', 'imagen']
 
 @admin.register(ServiciosExtras)
 class ServiciosExtrasAdmin(admin.ModelAdmin):
-    fields = ['titulo'
-            'precio']
+    fields = ['titulo',
+            'precio', 'imagen']
 
-    list_display = ['titulo', 'precio']
+    list_display = ['titulo', 'precio', 'imagen']
+
+@admin.register(HotelHabitacion)
+class HotelHabitacionAdmin(admin.ModelAdmin):
+    fields = ['estado',
+                'id_hotel',
+                'id_habitacion'
+                ]
+
+    list_display = ['estado','id_hotel','id_habitacion']
 
 
 # admin.site.register(Hoteles)

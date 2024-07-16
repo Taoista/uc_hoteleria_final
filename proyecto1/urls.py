@@ -21,17 +21,11 @@ from django.conf.urls import include
 urlpatterns = [
     # ? panel de administrador
     path('admin/', admin.site.urls),
-    
-    path('', include('app1.urls')),
-    # path('alumnos', include('app1.urls')),
 
-    # path('hoteles/create', include('app1.urls')),
-    # path('hoteles/ver', include('app1.urls')),
+    # ? aplicaion web cliente
+    path('', include('app1.urls'), name="index"),
 
-    # path('hoteles/ver', include('app1.urls')),
-    path('admin/editar', include('app1.urls')),
 
-    
 
 
 ]

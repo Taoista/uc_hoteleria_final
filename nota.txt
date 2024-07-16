@@ -34,9 +34,19 @@ altiro
 ? esto es cuando tengas instalado algun motor que no sea Sqlite
 pip cryptography
 
+? crear usuario
+python manage.py crearsuperuser
+
+
 migraciones
 ? generar las migraciones
  python .\manage.py makemigrations
 
  ? crear las migraciones
  python .\manage.py migrate
+
+? generar seeds para datos demos
+python manage.py seed_habitaciones
+python manage.py seed_hoteles
+python manage.py seed_serv_extras
+
