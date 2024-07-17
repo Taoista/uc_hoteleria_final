@@ -236,51 +236,24 @@ def success_reserva(request, id_reserva):
         
     }
 
-
     return render(request, "inventario/reservacion-success.html", context)
 
-
-def contacto(request):
-    return render(request, "inventario/contacto.html")
-
-
-def editar(request):
-    context = {}
-    return render(request, "editar/editar.html")
-
-def crear(request):
-    return render(request, "crear/crear.html")
+def contacto():
+    return HttpResponse("soy el contacto")
 
 
-def eliminar(request):
-    return render(request, "eliminar/eliminar.html")
+def login_intranet(request):
+
+    return render(request, "intranet/login_intranet.html")
+
+
+def intranet(request):
+
+    reservas  = Reservas.objects.select_related('id_habitacion', 'id_hotel')
+
     
+    context = {
+        'reservas' : reservas,
+    }
 
-
-# def otros(request):
-#     return render(request, "administrar/administrar.html")
-
-# def ver(request):
-
-#     hoteles = Hoteles.objects.prefetch_related('tipohabitacion_set', 'servicios_set').all()
-
-#     context = {
-#         'hoteles':hoteles
-#     }
-
-#     return render(request, "administrar/ver.html", context)
-
-# def create(request):
-
-#     tipo_habitacion = TipoHabitacion.objects.all()
-#     servicios = Servicios.objects.all()
-
-#     tipo_habitacion_json = json.dumps(list(tipo_habitacion.values()))
-
-#     context = {
-#         'tipo_habitacion': tipo_habitacion,
-#         'servicios': servicios,  # Pasa tipo_habitaciones al contexto
-#         'tipo_habitacion_json': tipo_habitacion_json
-#     }
-
-#     return render(request,"administrar/create.html", context)
+    return render(request, "intranet/intranet.html", context)

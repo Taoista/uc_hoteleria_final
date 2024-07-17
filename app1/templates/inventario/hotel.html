@@ -125,7 +125,7 @@
                 </div> <!--/booking-->
                 <!-- ===  Room overview === -->
 
-                <div class="room-overview">
+                {% comment %} <div class="room-overview">
 
                     <div class="container">
                         <div class="row">
@@ -341,7 +341,7 @@
                             </div> <!--/col-sm-10-->
                         </div> <!--/row-->
                     </div> <!--/container-->
-                </div> <!--/room-overview-->
+                </div> <!--/room-overview--> {% endcomment %}
             </div>
 
         </section>
@@ -354,7 +354,7 @@
 
             <div class="section-header">
                 <div class="container">
-                    <h2 class="title">Otros <a href="blog-category.html" class="btn btn-sm btn-clean-dark">ver</a></h2>
+                    <h2 class="title">Otros </h2>
                     <p>
                         {% comment %} Events, place to go, tour info & more {% endcomment %}
                     </p>
@@ -388,7 +388,7 @@
     
                 <div class="section-header">
                     <div class="container">
-                        <h2 class="title">Servicios <a href="facility.html" class="btn btn-sm btn-clean-dark">Explore more</a></h2>
+                        <h2 class="title">Servicios </h2>
                         <p>
                             Complementa tu Estancia con Nuestros Servicios Premium
                         </p>
@@ -414,7 +414,7 @@
                             <figcaption>Unparalleled devotion to luxury</figcaption>
                         </figure> {% endcomment %}
                         <!--anchor-->
-                        <a href="facility.html">ver</a>
+                        {% comment %} <a href="facility.html">ver</a> {% endcomment %}
                     </li>
                     {% endfor %}
     
@@ -422,9 +422,9 @@
     
                     <li class="stretcher-item more">
                         <div class="more-icon">
-                            <span data-title-show="Show more" data-title-hide="+"></span>
+                            <span data-title-show="" data-title-hide="+"></span>
                         </div>
-                        <a href="facility.html">Anchor link</a>
+                        {% comment %} <a href="facility.html">Anchor link</a> {% endcomment %}
                     </li>
     
                 </ul>

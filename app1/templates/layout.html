@@ -98,14 +98,17 @@
                                 </li>
                                
                             </ul>
-    
-                            <!-- navigation-right -->
-    
+
+
                             <ul class="navigation-right">
-                             
+    
                                 <li>
-                                    <a href="{% url 'contacto' %}">Contacto</a>
+                                    <a href="{% url 'login-intranet' %}">intranet</a>
                                 </li>
+                             
+                                {% comment %} <li>
+                                    <a href="{% url 'contacto' %}">Contacto</a>
+                                </li> {% endcomment %}
                             </ul>
     
                         </div> <!--/navigation-block-->
@@ -143,7 +146,7 @@
             <footer>
                 <div class="container">
     
-                    <!--footer links-->
+                    {% comment %} <!--footer links-->
                     <div class="footer-links">
                         <div class="row">
                             <div class="col-sm-6 footer-left">
@@ -153,7 +156,7 @@
                                 <a href="#">Gallery</a> &nbsp; | &nbsp; <a href="#">Reservations</a> | &nbsp; <a href="#">Help center</a>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
     
                     <!--footer social-->
     
@@ -172,7 +175,7 @@
                                 </ul>
                             </div>
                             <div class="col-sm-12 copyright">
-                                <small>Copyright &copy; {{ current_year }} &nbsp; | &nbsp; <a href="">Veranum</a></small>
+                                <small>Copyright &copy; {{ current_year }} &nbsp; | &nbsp; <a href="">DUOC UC</a></small>
                             </div>
                             <div class="col-sm-12 text-center">
                                 <img src="assets/images/logo-footer.png" alt="" />

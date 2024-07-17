@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+ <section class="page">
+
+
+            <div class="page-header" style="background-image:url(assets/images/header-1.jpg)">
+                <div class="container">
+                    <h2 class="title">Login intranet</h2>
+                    {% comment %} <p>Guest information</p> {% endcomment %}
+                </div>
+            </div>
+
+            <div class="checkout">
+
+                <div class="container">
+
+                    <div class="clearfix">
+
+                        <!-- ========================  Note block ======================== -->
+
+                        <div class="cart-wrapper">
+
+                            <div class="note-block">
+
+                                <div class="row">
+
+                                    <!-- === left content === -->
+
+                                    <div class="col-md-12">
+
+                                        <div class="login-wrapper">
+                                            <div class="white-block">
+
+                                                <div class="login-block ">
+                                                    <div class="h4">Login</div>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="text" value="" id="user" class="form-control" placeholder="Usuario">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="text" value="" id="pass" class="form-control" placeholder="passord">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button  class="btn btn-danger btn-login">Inicior</button>
+                                                    </div>
+                                                </div> <!--/signup-->
+                                            </div>
+                                        </div> <!--/login-wrapper-->
+                                    </div> <!--/col-md-6-->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div> <!--/container-->
+            </div> <!--/checkout-->
+
+        </section>
+
+{% endblock %}
+
+
+{% block content_js %}
+    <script>
+
+        let usuario = document.querySelector('#user')
+        let pass = document.querySelector('#pass')
+
+        const btn =  document.querySelector(".btn-login")
+
+        btn.addEventListener('click', function(){
+            if(usuario.value === "" || pass.value === ""){
+                //alert("Todos los campos son obligatorios")
+                return false
+            } else {
+                window.location.href = "{% url 'intranet' %}";
+            }
+        })
+
+    </script>
+{% endblock %}

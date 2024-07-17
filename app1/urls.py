@@ -15,7 +15,12 @@ urlpatterns = [
     # ? mustra la vista final
     path('success_reserva/<int:id_reserva>/', views.success_reserva, name="success_reserva"),
 
-    
+    # ? ruta intranet
+
+    path('login-intrate', views.login_intranet, name="login-intranet"),
+    path('intranet', views.intranet, name="intranet"),
+
+
 
     # ? lectura (read)
 

@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+
+  <section class="page">
+
+            <!-- ===  Page header === -->
+
+            <div class="page-header" style="background-image:url(assets/images/header-1.jpg)">
+                <div class="container">
+                    <h2 class="title">Shortcodes</h2>
+                    <p>Theme elements, fonts, icons and more</p>
+                </div>
+            </div>
+
+            <!-- === Shorcodes === -->
+
+            <div class="shortcodes">
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-md-3 visible-md visible-lg">
+                            <div data-spy="affix" data-offset-top="290">
+                                <ul class="list-group">
+                                    {% comment %} <li class="list-group-item"><a href="#carousel">Carousel</a></li>
+                                    <li class="list-group-item"><a href="#typography">Typography</a></li>
+                                    <li class="list-group-item"><a href="#buttons">Buttons</a></li>
+                                    <li class="list-group-item"><a href="#checkbox">Checkbox & radio</a></li>
+                                    <li class="list-group-item"><a href="#steps">Cart steps</a></li>
+                                    <li class="list-group-item"><a href="#icons-hotel">Hotel icons</a></li>
+                                    <li class="list-group-item"><a href="#icons-linear">Linear icons</a></li>
+                                    <li class="list-group-item"><a href="#glyphs">Bootsrap glyph icons</a></li>
+                                    <li class="list-group-item"><a href="#breadcrumbs">Breadcrumbs</a></li>
+                                    <li class="list-group-item"><a href="#pagination">Pagination</a></li>
+                                    <li class="list-group-item"><a href="#alerts">Alerts</a></li>
+                                    <li class="list-group-item"><a href="#progress">Progress bars</a></li>{% endcomment %}
+                                    <li class="list-group-item"><a href="#tables">Reservas</a></li> 
+                                    {% comment %} <li class="list-group-item"><a href="#forms">Forms</a></li> {% endcomment %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+
+                       
+                           
+
+
+
+                            <!--======= Tables -->
+
+                            <div class="panel panel-default" id="">
+                                <div class="panel-heading">Tables</div>
+                                <div class="panel-body">
+                                    
+                                    <table class="table table-striped table-bordered table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombre</th>
+                                                <th>Apellido</th>
+                                                <th>email</th>
+                                                <th>telefono</th>
+                                                <th>Hotel</th>
+                                                <th>habitacion</th>
+                                                <th>precio</th>
+                                                <th>f. llegada</th>
+                                                <th>f. salida</th>
+                                                <th>Huespedes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            {% for item in reservas %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{ item.nombre }}</td>
+                                                <td>{{ item.apellido }}</td>
+                                                <td>{{ item.email }}</td>
+                                                <td>{{ item.telefono }}</td>
+                                                <td>{{ item.id_hotel.nombre }}</td>
+                                                <td>{{ item.id_habitacion.titulo }}</td>
+                                                <td>{{ item.id_habitacion.precio }}</td>
+                                                <td>{{ item.f_inicio }}</td>
+                                                <td>{{ item.f_termino }}</td>
+                                                <td>{{ item.cantidad }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+
+                         
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+{% endblock %}
+
+
+{% block content_js %}
+   
+{% endblock %}
