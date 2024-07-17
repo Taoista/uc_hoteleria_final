@@ -35,13 +35,18 @@ class Reservas(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    telefono = models.IntegerField(max_length=10)
+    telefono = models.IntegerField()
     id_hotel = models.ForeignKey(Hoteles,on_delete=models.PROTECT, db_column='id_hotel')
     id_habitacion = models.ForeignKey(Habitaciones,on_delete=models.PROTECT, db_column='id_habitacion')
     f_inicio = models.DateField()
     f_termino = models.DateField()
-    cantidad = models.IntegerField(max_length=10)
+    cantidad = models.IntegerField()
+    total = models.IntegerField(default=0)
 
+class ReservasServiciosExtras(models.Model):
+    id_res_serv_extras =  models.AutoField(db_column='id', primary_key=True)
+    id_reserva = models.ForeignKey(Reservas,on_delete=models.PROTECT, db_column='id_reserva')
+    id_serivicio_extra = models.ForeignKey(ServiciosExtras,on_delete=models.PROTECT, db_column='id_servicio_extra')
 
 class HotelHabitacion(models.Model):
     id_hot_hav = models.AutoField(db_column='id', primary_key=True)

@@ -91,21 +91,24 @@
 
                             <div class="clearfix">
                                 <div class="cart-block cart-block-footer clearfix">
-                                    {% comment %} <div>
-                                        <strong>Discount 15%</strong>
+                                    <div class="clearfix">
+                                        <p>Servicios Extras</p>
+                                        {% for item in servicios_extras %}
+                                        <span class="checkbox">
+                                            <input type="checkbox" id="extra-{{ item.id_serv_extras }}" onclick="calculate('{{ item.id_serv_extras }}','{{ item.precio }}')">
+                                            <label for="extra-{{ item.id_serv_extras }}">{{ item.titulo }} $ {{ item.precio }}</label>
+                                        </span>
+                                        {% endfor %}
                                     </div>
-                                    <div>
-                                        <span>$ 159,00</span>
-                                    </div> {% endcomment %}
                                 </div>
 
                                 <div class="cart-block cart-block-footer clearfix">
-                                    {% comment %} <div>
-                                        <strong>TAX</strong>
+                                     <div>
+                                        <strong>Total</strong>
                                     </div>
                                     <div>
-                                        <span>$ 59,00</span>
-                                    </div> {% endcomment %}
+                                        <span class="final h3" id="total-a-pagar">$ {{ precio }}</span>
+                                    </div> 
                                 </div>
                             </div>
 
@@ -153,20 +156,53 @@
 
 <script>
 
-    function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+    let total_hotel = '{{ precio }}'
+
+
+
+    let lista_serv = []
+    function calculate(id, total) {
+        let sub_suma = 0
+        const elemento = { "id": id, "total": total };
+
+        // Verifica si el elemento con el mismo id ya existe en la lista
+        let existe = false;
+        for (let i = 0; i < lista_serv.length; i++) {
+            if (lista_serv[i].id === id) {
+                // El id ya existe, así que lo eliminamos
+                lista_serv.splice(i, 1);
+                existe = true;
+                break;  // Salimos del bucle después de eliminar el elemento
             }
         }
+
+        // Si el id no existe, lo agregamos
+        if (!existe) {
+            lista_serv.push(elemento);
+        }
+        let temp_sub = 0
+        for (let i = 0; i < lista_serv.length; i++) {
+            sub_suma += parseInt(lista_serv[i].total)
+        }
+        document.querySelector("#total-a-pagar").innerHTML = '$ '+(sub_suma + parseInt(total_hotel)).toString()
+
+        //console.log(lista_serv);
     }
-    return cookieValue;
-}
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 
     document.querySelector(".btn-regresar").addEventListener("click",()=>{
         window.history.back();
@@ -216,6 +252,11 @@
         id_habitacion.name = 'id_habitacion';
         id_habitacion.value = '{{ id_habitacion }}';
 
+        let list_servicios = document.createElement('input');
+        list_servicios.type = 'hidden';
+        list_servicios.name = 'list_servicios';
+        list_servicios.value = JSON.stringify({ lista_serv });
+
         const csrfInput = document.createElement('input');
         csrfInput.type = 'hidden';
         csrfInput.name = 'csrfmiddlewaretoken';
@@ -226,6 +267,7 @@
         form.appendChild(cantidad);
         form.appendChild(id_hotel);
         form.appendChild(id_habitacion);
+        form.appendChild(list_servicios);
         form.appendChild(csrfInput);
 
         document.body.appendChild(form);

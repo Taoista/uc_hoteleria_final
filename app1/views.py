@@ -78,6 +78,9 @@ def reservar(request):
 
     precio = habitacion[0].precio
 
+    servicios_extras = ServiciosExtras.objects.all()
+
+
     context = {
         'id_hotel': id_hotel,
         'id_habitacion': id_habitacion,
@@ -87,7 +90,8 @@ def reservar(request):
         'imagen_habitacion': imagen_habitacion,
         'nombre_hotel': nombre_hotel,
         'nombre_habitacion': nombre_habitacion,
-        'precio': precio
+        'precio': precio,
+        'servicios_extras' : servicios_extras
     }
 
 
@@ -99,6 +103,15 @@ def checkout(request):
     f_inicio = request.POST.get('f_inicio')
     f_termino = request.POST.get('f_termino')
     cantidad = request.POST.get('cantidad')
+    list_servicios = request.POST.get('list_servicios')
+
+    print('__________________________________>')
+
+
+    print(list_servicios)
+# {"lista_serv":[{"id":"1","total":"5000"},{"id":"2","total":"7000"}]}
+    print('__________________________________>')
+
 
     hotel = Hoteles.objects.filter(id_hotel=id_hotel)
     habitacion = Habitaciones.objects.filter(id_habitacion=id_habitacion)

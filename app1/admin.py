@@ -46,7 +46,7 @@ class ReservasAdmin(admin.ModelAdmin):
                 'id_habitacion',
                 'f_inicio',
                 'f_termino', 
-                'cantidad'
+                'cantidad',
                 ]
 
     list_display = ['nombre',
@@ -57,7 +57,7 @@ class ReservasAdmin(admin.ModelAdmin):
                 'id_habitacion',
                 'f_inicio',
                 'f_termino', 
-                'cantidad']
+                'cantidad', 'total']
 
 
 

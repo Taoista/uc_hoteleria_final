@@ -7,10 +7,9 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Crear una lista de datos para los hoteles
         servicios_datos = [
-            {'titulo': 'servicio 1','precio':5000, 'imagen' : 'assets/images/services-2.jpg'},
-            {'titulo': 'servicio 2','precio':7000, 'imagen' : 'assets/images/services-2.jpg'},
-            {'titulo': 'servicio 3','precio':8000, 'imagen' : 'assets/images/services-2.jpg'},
-           
+            {'titulo': 'piscina','precio':5000, 'imagen' : 'assets/images/services-2.jpg'},
+            {'titulo': 'gimnasio','precio':7000, 'imagen' : 'assets/images/services-2.jpg'},
+            {'titulo': 'jacuzzi','precio':8000, 'imagen' : 'assets/images/services-2.jpg'},
         ]
         
         # Iterar sobre los datos y crear registros en la base de datos
