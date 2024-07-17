@@ -1,0 +1,241 @@
+{% extends "layout.html" %}
+{% load static %}
+
+
+{% block content %}
+    
+   <section class="page">
+
+            <!-- ===  Page header === -->
+
+            <div class="page-header" style="background-image:url({% static 'assets/images/header-1.jpg' %})">
+                <div class="container">
+                    <h2 class="title">Crear Reservacion</h2>
+                    <p>Paso 2</p>
+                </div>
+            </div>
+
+            <div class="step-wrapper">
+                <div class="container">
+                    <div class="stepper">
+                        <ul class="row">
+                            <li class="col-md-4 active">
+                                <a href="reservation-1.html"><span data-text="Hotel y Habitacion"></span></a>
+                            </li>
+                            <li class="col-md-4">
+                                <a href="reservation-2.html"><span data-text="Reservacion"></span></a>
+                            </li>
+                            <li class="col-md-4">
+                                <a href="reservation-3.html"><span data-text="Checkout"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===  Checkout === -->
+
+            <div class="checkout">
+
+                <div class="container">
+
+                    <div class="clearfix">
+
+                        <!-- ========================  Cart wrapper ======================== -->
+
+                        <div class="cart-wrapper">
+
+                            <!--cart header -->
+
+                            <div class="cart-block cart-block-header clearfix">
+                                <div>
+                                    <span>Hotel y Habitacion</span>
+                                </div>
+                                <div class="text-right">
+                                    <span>Price</span>
+                                </div>
+                            </div>
+
+                            <!--cart items-->
+
+                            <div class="clearfix">
+
+                                <div class="cart-block cart-block-item clearfix">
+                                    <div class="image">
+                                        <a href="room-overview.html"><img src="{{ imagen_habitacion }}" alt="" /></a>
+                                    </div>
+                                    <div class="title">
+                                        <div class="h2"><a href="room-overview.html">{{ nombre_hotel }}  {{ nombre_habitacion }}</a></div>
+                                        <p>
+                                            <strong>Fecha llegada</strong> <br /> <a href="#">({{ f_inicio }})</a>
+                                        </p>
+                                          <p>
+                                            <strong>Fecha Salida</strong> <br /> <a href="#">({{ f_termino }})</a>
+                                        </p>
+                                        <p>
+                                            <strong>Huesped</strong> <br />  {{ cantidad }} personas
+                                        </p>
+                                      
+                                    </div>
+                                    <div class="price">
+                                        <span class="final h3">$ {{ precio }}</span>
+                                        {% comment %} <span class="discount">$ 2.666</span> {% endcomment %}
+                                    </div>
+                                    <!--delete-this-item-->
+                                    <span class="icon icon-cross icon-delete"></span>
+                                </div>
+
+                            </div>
+
+                            <!--cart prices -->
+
+                            <div class="clearfix">
+                                <div class="cart-block cart-block-footer clearfix">
+                                    {% comment %} <div>
+                                        <strong>Discount 15%</strong>
+                                    </div>
+                                    <div>
+                                        <span>$ 159,00</span>
+                                    </div> {% endcomment %}
+                                </div>
+
+                                <div class="cart-block cart-block-footer clearfix">
+                                    {% comment %} <div>
+                                        <strong>TAX</strong>
+                                    </div>
+                                    <div>
+                                        <span>$ 59,00</span>
+                                    </div> {% endcomment %}
+                                </div>
+                            </div>
+
+                            <!--cart final price -->
+
+                            <div class="clearfix">
+                                <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
+                                    {% comment %} <div>
+                                        <span class="checkbox">
+                                            <input type="checkbox" id="couponCodeID">
+                                            <label for="couponCodeID">Promo code</label>
+                                            <input type="text" class="form-control form-coupon" value="" placeholder="Enter your coupon code" />
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="h2 title">$ 1259,00</div>
+                                    </div> {% endcomment %}
+                                </div>
+                            </div>
+
+                            <!-- ========================  Cart navigation ======================== -->
+
+                            <div class="clearfix">
+                                <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
+                                    <div>
+                                        <button  class="btn btn-clean-dark btn-regresar">Regresar</button>
+                                    </div>
+                                    <div>
+                                        <button  class="btn btn-main btn-checkout">Reservar <span class="icon icon-chevron-right"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div> <!--/container-->
+            </div> <!--/checkout-->
+
+        </section>
+       
+{% endblock %}
+
+{% block content_js %}
+
+<script>
+
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+    document.querySelector(".btn-regresar").addEventListener("click",()=>{
+        window.history.back();
+    })
+
+    const csrfToken = getCookie('csrftoken');
+
+    {% comment %} ? enviar al formulario {% endcomment %}
+
+    document.querySelector(".btn-checkout").addEventListener("click",()=>{
+
+        // Obtener la fecha usando el método getDate()
+       
+
+        const formattedDateInicio = '{{ f_inicio }}'
+        const formattedDateTermino = '{{ f_termino }}'
+        var clientes = '{{ cantidad }}'
+
+        // ? formulario de envio
+
+        let form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{% url "checkout" %}';
+
+        const f_inicio = document.createElement('input')
+        f_inicio.type = 'hidden';
+        f_inicio.name = 'f_inicio';
+        f_inicio.value = formattedDateInicio;  // Reemplaza con el valor real
+
+        const f_termino = document.createElement('input')
+        f_termino.type = 'hidden';
+        f_termino.name = 'f_termino';
+        f_termino.value = formattedDateTermino;  // Reemplaza con el valor real
+
+        let cantidad = document.createElement('input')
+        cantidad.type = 'hidden';
+        cantidad.name = 'cantidad';
+        cantidad.value = clientes;  // Reemplaza con el valor real
+
+        let id_hotel = document.createElement('input');
+        id_hotel.type = 'hidden';
+        id_hotel.name = 'id_hotel';
+        id_hotel.value = '{{ id_hotel }}';
+
+        let id_habitacion = document.createElement('input');
+        id_habitacion.type = 'hidden';
+        id_habitacion.name = 'id_habitacion';
+        id_habitacion.value = '{{ id_habitacion }}';
+
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrfmiddlewaretoken';
+        csrfInput.value = csrfToken;
+
+        form.appendChild(f_inicio);
+        form.appendChild(f_termino);
+        form.appendChild(cantidad);
+        form.appendChild(id_hotel);
+        form.appendChild(id_habitacion);
+        form.appendChild(csrfInput);
+
+        document.body.appendChild(form);
+
+        form.submit();
+    })
+
+
+</script>
+
+{% endblock %}
+
+

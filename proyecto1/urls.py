@@ -24,6 +24,7 @@ urlpatterns = [
 
     # ? aplicaion web cliente
     path('', include('app1.urls'), name="index"),
+    # path('reservar', include('app1.urls'), name="reservar"),
 
 
 

@@ -8,6 +8,13 @@ urlpatterns = [
 
     path('hotel/<int:id_hotel>/', views.hotel, name="hotel"),
     path('contacto', views.contacto, name="contacto"),
+    path('reservar', views.reservar, name="reservar"),
+    path('checkout', views.checkout, name="checkout"),
+
+    path('create-reservation', views.create_reservacion, name="create-reservation"),
+    # ? mustra la vista final
+    path('success_reserva/<int:id_reserva>/', views.success_reserva, name="success_reserva"),
+
     
 
     # ? lectura (read)

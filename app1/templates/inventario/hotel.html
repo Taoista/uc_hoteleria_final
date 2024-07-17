@@ -1,0 +1,675 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% comment %} {% block title %}Mi Página Personalizada{% endblock %} {% endcomment %}
+
+{% block content %}
+
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">  
+
+        <!-- ========================  Room ======================== -->
+
+        <section class="page">
+
+            <!-- ===  Page header === -->
+
+            <div class="page-header" style="background-image:url({% static 'assets/images/header-1.jpg' %})">
+            {% comment %} <div class="page-header" style="background-image:url(assets/images/header-1.jpg)"> {% endcomment %}
+                <div class="container">
+                    <h2 class="title">{{ titulo }}</h2>
+                    <p>{{ direccion }}</p>
+                </div>
+            </div>
+           
+
+            <div class="room">
+                <!-- === Room gallery === -->
+
+                <div class="room-gallery">
+                    <div class="container">
+                        <div class="owl-slider owl-theme owl-slider-gallery">
+
+                            <!-- === slide item === -->
+                            {% for item in hotel_habitaciones %}
+                            <div data-id="{{ item.id_habitacion.id_habitacion }}" class="item" style="background-image:url({{ item.id_habitacion.imagen }})">
+                                <img src="{{ item.id_habitacion.imagen }}" alt="" />
+                            </div>
+                            {% endfor %}
+
+                        </div> <!--/owl-slider-->
+
+                    </div>
+                </div> <!--/room-gallery-->
+                <!-- === Booking === -->
+
+                <div class="booking booking-inner">
+
+                    <div class="container">
+
+                        <div class="booking-wrapper">
+                            <div class="row">
+
+                                {% comment %} ? fecha inicio {% endcomment %}
+                                <div class="col-xs-4 col-sm-3">
+                                    <div class="date" id="dateArrival" data-text="Arrival">
+                                        <input class="datepicker" readonly="readonly" id="f_inicio"/>
+                                        <div class="date-value"></div>
+                                    </div>
+                                </div>
+
+                                <!--=== date departure ===-->
+                                {% comment %} ? fecah termino {% endcomment %}
+                                <div class="col-xs-4 col-sm-3">
+                                    <div class="date" id="dateDeparture" data-text="Departure">
+                                        <input class="datepicker" readonly="readonly" id="f_termino" />
+                                        <div class="date-value"></div>
+                                    </div>
+                                </div>
+                                {% comment %} ? cantidad de personas {% endcomment %}
+
+                                <div class="col-xs-4 col-sm-2">
+
+                                    <div class="guests" data-text="Guests">
+                                        <div class="result">
+                                            <input class="qty-result" type="text" value="2" id="qty-result" readonly="readonly" />
+                                            <div class="qty-result-text date-value" id="qty-result-text"></div>
+                                        </div>
+                                        <!--=== guests list ===-->
+                                        <ul class="guest-list">
+
+                                            <li class="header">
+                                                Please choose number of guests <span class="qty-apply"><i class="icon icon-cross"></i></span>
+                                            </li>
+
+                                            <!--=== adults ===-->
+
+                                            <li class="clearfix">
+
+                                                <!--=== Adults value ===-->
+
+                                                <div>
+                                                    <input class="qty-amount" value="2" type="text" id="ticket-adult" data-value="2" readonly="readonly" />
+                                                </div>
+
+                                                <div>
+                                                    <span>Adults <small>16+ years</small></span>
+                                                </div>
+
+                                                <!--=== Add/remove quantity buttons ===-->
+
+                                                <div>
+                                                    <input class="qty-btn qty-minus" value="-" type="button" data-field="ticket-adult" />
+                                                    <input class="qty-btn qty-plus" value="+" type="button" data-field="ticket-adult" />
+                                                </div>
+
+                                            </li>
+
+                                           
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!--=== button ===-->
+
+                                <div class="col-xs-12 col-sm-4">
+                                    <button  class="btn btn-clean" id='btn-capturar'>
+                                        RESERVAR
+                                        <small>recerva ya</small>
+                                    </button>
+                                </div>
+
+                            </div> <!--/row-->
+                        </div><!--/booking-wrapper-->
+                    </div> <!--/container-->
+                </div> <!--/booking-->
+                <!-- ===  Room overview === -->
+
+                <div class="room-overview">
+
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
+                                <!-- === Room aminities === -->
+
+                                <div class="room-block room-aminities">
+
+                                    <h2 class="title">Room aminities</h2>
+
+                                    <div class="row">
+
+                                        <!--=== item ===-->
+
+                                        <div class="col-xs-6 col-sm-2">
+                                            <figure>
+                                                <figcaption>
+                                                    <span class="hotelicon hotelicon-air-condition"></span>
+                                                    <p>Aircondition</p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+
+                                        <!--=== item ===-->
+
+                                        <div class="col-xs-6 col-sm-2">
+                                            <figure>
+                                                <figcaption>
+                                                    <span class="hotelicon hotelicon-king-bed"></span>
+                                                    <p>1 Kingsize bed</p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+
+                                        <!--=== item ===-->
+
+                                        <div class="col-xs-6 col-sm-2">
+                                            <figure>
+                                                <figcaption>
+                                                    <span class="hotelicon hotelicon-guest"></span>
+                                                    <p>2 People</p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+
+                                        <!--=== item ===-->
+
+                                        <div class="col-xs-6 col-sm-2">
+                                            <figure>
+                                                <figcaption>
+                                                    <span class="hotelicon hotelicon-wifi"></span>
+                                                    <p>Internet</p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+
+                                        <!--=== item ===-->
+
+                                        <div class="col-xs-6 col-sm-2">
+                                            <figure>
+                                                <figcaption>
+                                                    <span class="hotelicon hotelicon-washer"></span>
+                                                    <p>Washer</p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+
+                                        <!--=== item ===-->
+
+                                        <div class="col-xs-6 col-sm-2">
+                                            <figure>
+                                                <figcaption>
+                                                    <span class="hotelicon hotelicon-roomservice"></span>
+                                                    <p>Room service</p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- === Room block === -->
+
+                                <div class="room-block">
+                                    <h2 class="title">Room overview</h2>
+                                    <p>
+                                        The Superior Rooms pay tribute to fashion and craftsmanship. The rooms are approximately 19m2 with views of Rue d'Alger and Jardin des Tuileries.
+                                        The selection and pairing of materials has been carefully chosen to give you a cool experience. The super soft bed topper is simply extravagant!
+                                        Every room is different but the colour palette uses unique and expertly matched hues.
+                                        An openwork brass screen separates the bathroom from the bedroom. This original feature helps make every room your very own cosy and peaceful haven.
+                                        Bathrobes, slippers and SOTHYS toiletries are provided in the bathroom to pamper you.
+                                    </p>
+                                </div>
+
+                                <!-- === Room block === -->
+
+                                <div class="room-block">
+
+                                    <h2 class="title">House rules</h2>
+
+                                    <!-- === box === -->
+
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p><strong>Check-In</strong></p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>14:00 - 22:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- === box === -->
+
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p><strong>Check-out</strong></p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>14:00 - 22:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- === box === -->
+
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p><strong>Luggage storage</strong></p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>14:00 - 22:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- === box === -->
+
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p><strong>Cancellation/prepayment</strong></p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>
+                                                    Cancellation and prepayment policies vary according to room type. Please enter the dates of your stay and check the conditions of your required room.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- === box === -->
+
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p><strong>Children and extra beds</strong></p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>All children are welcome.</p>
+                                                <p>One child under 6 years is charged EUR 50 per night when using existing beds.</p>
+                                                <p>There is no capacity for extra beds in the room.</p>
+                                                <p>Supplements are not calculated automatically in the total costs and will have to be paid for separately during your stay.                                        </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- === box === -->
+
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p><strong>Pets</strong></p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>Pets are not allowed.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- === box === -->
+
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p><strong>Additional info</strong></p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>Please note that the restaurant is closed each Sunday.</p>
+                                                <p>The restaurant will also be closed during Christmas (25-26 December).</p>
+                                                <p>Please note that parking spaces cannot be reserved or guaranteed.</p>
+                                                <p>
+                                                    For a group booking more than 5 rooms up to 4 weeks prior to arrival cancellation is
+                                                    100% free of charge, within 2 until 4 weeks 50% free of charge, and within 2 weeks the
+                                                    property will charge you in full. Please note that Ozo hotel always charges city tax
+                                                    prior to your arrival with the non-refundable rate or group booking.
+                                                </p>
+                                                <p>
+                                                    Please note that the credit card that is used for the booking needs to be present at check-in.
+                                                    When this credit card is not available please bring a photocopy of the credit card with
+                                                    authorization of the owner.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div> <!--/col-sm-10-->
+                        </div> <!--/row-->
+                    </div> <!--/container-->
+                </div> <!--/room-overview-->
+            </div>
+
+        </section>
+
+        <!-- ========================  Blog ======================== -->
+
+        <section class="blog blog-widget">
+
+            <!-- === stretcher header === -->
+
+            <div class="section-header">
+                <div class="container">
+                    <h2 class="title">Otros <a href="blog-category.html" class="btn btn-sm btn-clean-dark">ver</a></h2>
+                    <p>
+                        {% comment %} Events, place to go, tour info & more {% endcomment %}
+                    </p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    {% for item in hoteles %}
+                    <div class="col-sm-4">
+                        <a href="{% url 'hotel' id_hotel=item.id_hotel %}">
+                            <article>
+                                <div class="image">
+                                    <img src="{{ item.imagen }}" alt="" />
+                                </div>
+                                
+                            </article>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                </div> <!--/row-->
+            </div> <!--/container-->
+        </section>
+
+        <!-- ========================  Stretcher widget ======================== -->
+
+         <section class="stretcher-wrapper">
+    
+                <!-- === stretcher header === -->
+    
+                <div class="section-header">
+                    <div class="container">
+                        <h2 class="title">Servicios <a href="facility.html" class="btn btn-sm btn-clean-dark">Explore more</a></h2>
+                        <p>
+                            Complementa tu Estancia con Nuestros Servicios Premium
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- === stretcher === -->
+    
+                <ul class="stretcher">
+    
+                    {% comment %}  * SERVICIOS {% endcomment %}
+                    {% for item in servicios %}
+                    <li class="stretcher-item" style="background-image:url({{ item.imagen }});">
+                        <!--logo-item-->
+                        <div class="stretcher-logo">
+                            <div class="text">
+                                <span class="text-intro h4">{{ item.titulo }}</span>
+                            </div>
+                        </div>
+                        <!--main text-->
+                        {% comment %} <figure>
+                            <h4>Spa center</h4>
+                            <figcaption>Unparalleled devotion to luxury</figcaption>
+                        </figure> {% endcomment %}
+                        <!--anchor-->
+                        <a href="facility.html">ver</a>
+                    </li>
+                    {% endfor %}
+    
+                
+    
+                    <li class="stretcher-item more">
+                        <div class="more-icon">
+                            <span data-title-show="Show more" data-title-hide="+"></span>
+                        </div>
+                        <a href="facility.html">Anchor link</a>
+                    </li>
+    
+                </ul>
+            </section>
+       
+{% endblock %}
+
+{% block content_js %}
+
+<script>
+ // Default calendar namespaces
+    var dateFormat = "<span class='day'>d</span> <span class='month'>M</span> <span class='year'>yy</span>",
+        dateArrival = '#dateArrival input',
+        dateDeparture = '#dateDeparture input',
+        dateArrivalVal = '#dateArrival .date-value',
+        dateDepartureVal = '#dateDeparture .date-value';
+
+    // Show arrival calendar
+    $(dateArrival).datepicker({
+        minDate: 'D',
+        dateFormat: dateFormat,
+        // get value on selected date for departure
+        onSelect: function (txt, inst) {
+            // get arrival value
+            $(dateArrivalVal).html($(dateArrival).val());
+            // set date format
+            $(dateDepartureVal).html(txt);
+            // set day after
+            var NewDay = $(dateDepartureVal).find('.day'),
+                NewDayVal = NewDay.html();
+            NewDay.html(parseInt(NewDayVal) + 1);
+
+        },
+        onClose: function (selectedDate) {
+            var myDate = $(this).datepicker('getDate');
+            myDate.setDate(myDate.getDate() + 1);
+            // Set min-date value and day after on date departure
+            $(dateDeparture).datepicker("option", "minDate", myDate);
+        }
+    });
+
+    // Show departure calendar
+    $(dateDeparture).datepicker({
+        minDate: 'D+1',
+        dateFormat: dateFormat,
+        // get value on selected date for return
+        onSelect: function (txt, inst) {
+            $(dateDepartureVal).html(txt);
+            $(dateDepartureVal).html($(dateDeparture).val());
+        }
+    });
+
+    // set current date
+    $('.datepicker').datepicker('setDate', 'today');
+    // get current value from departure 
+    $(dateArrivalVal).html($(dateArrival).val());
+    // get current value from return
+    $(dateDepartureVal).html($(dateDeparture).val());
+    // hide return input field
+    updateGuestNumber();
+    // update number of guest list
+
+
+        // Guests 
+    // -------------------------------------------------------
+
+    var $guests = $('.guests'),
+        $guestList = $('.guests .guest-list');
+
+    // Guest list toogle event - dropdown
+    $('.guests .result').on('click', function (e) {
+
+        e.stopPropagation();
+        $guests.toggleClass("show");
+
+        if ($guests.hasClass('show')) {
+            $guestList.fadeIn();
+        }
+        else {
+            $guestList.fadeOut();
+        }
+
+    });
+
+    // Quantities (add remove guests numbers) 
+    // -------------------------------------------------------
+
+    $('.qty-plus').add('.qty-minus').on("click", function (e) {
+        e.preventDefault();
+
+        var $this = $(this),
+            fieldName = $this.attr('data-field'),
+            $input = $('input#' + fieldName);
+
+        var currentVal = parseInt($input.data('value'), 10),
+            ticketType = $input.data('tickettype');
+
+        if (!isNaN(currentVal)) {
+            var isChanged = false,
+                value = 0;
+
+            if ($this.hasClass('qty-plus') && currentVal < 12) {
+                value = currentVal + 1;
+                isChanged = true;
+            }
+
+            if ($this.hasClass('qty-minus') && currentVal > 0) {
+                value = currentVal - 1;
+                isChanged = true;
+            }
+
+            if (isChanged) {
+                $input.data('value', value);
+                $(ticketType).val(ticketType + '-' + value);
+                $input.val(value);
+                // Update guests number
+                updateGuestNumber();
+            }
+        }
+    });
+
+    // Passangers result
+    function updateGuestNumber() {
+        var adult = $('#ticket-adult').val(),
+           // children = $('#ticket-children').val(),
+            //infants = $('#ticket-infants').val(),
+            qty = $('#qty-result');
+            qty.val(parseInt(adult, 10));
+        // DOM results
+        $('#qty-result-text').text(qty.val());
+    }
+  
+    const btn = document.querySelector('#btn-capturar')
+
+    {% comment %} let f_inicio = document.querySelector("#f_inicio").value {% endcomment %}
+    let cantidad = document.querySelector("#qty-result-text").innerHTML
+
+     $("#f_inicio").datepicker({
+              dateFormat: "dd/mm/yy",
+                onSelect: function(dateText, inst) {
+                    $("#dateArrival .date-value").text(dateText);
+        }
+    });
+
+     $("#f_termino").datepicker({
+              dateFormat: "dd/mm/yy",
+                onSelect: function(dateText, inst) {
+                    $("#dateArrival .date-value").text(dateText);
+        }
+    });
+
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+    $("#btn-capturar").on("click", function() {
+        let owlItemActive = document.querySelector('.owl-item.active');
+
+        let childDataId = owlItemActive.querySelector('.item').getAttribute('data-id');
+        
+
+
+        // Obtener la fecha usando el método getDate()
+        const dateValueInicio = $("#f_inicio").datepicker("getDate");
+        const dateValueTermino = $("#f_termino").datepicker("getDate");
+
+        const formattedDateInicio = $.datepicker.formatDate("dd-mm-yy", dateValueInicio);
+        const formattedDateTermino = $.datepicker.formatDate("dd-mm-yy", dateValueTermino);
+       
+        var clientes = document.querySelector("#qty-result-text").innerHTML
+
+        const csrfToken = getCookie('csrftoken');
+
+        let form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{% url "reservar" %}';
+
+        const f_inicio = document.createElement('input')
+        f_inicio.type = 'hidden';
+        f_inicio.name = 'f_inicio';
+        f_inicio.value = formattedDateInicio;  // Reemplaza con el valor real
+
+        const f_termino = document.createElement('input')
+        f_termino.type = 'hidden';
+        f_termino.name = 'f_termino';
+        f_termino.value = formattedDateTermino;  // Reemplaza con el valor real
+
+        let cantidad = document.createElement('input')
+        cantidad.type = 'hidden';
+        cantidad.name = 'cantidad';
+        cantidad.value = clientes;  // Reemplaza con el valor real
+
+        let id_hotel = document.createElement('input');
+        id_hotel.type = 'hidden';
+        id_hotel.name = 'id_hotel';
+        id_hotel.value = '{{ id_hotel }}';
+
+        //console.log(id_hotel.value);
+
+        let id_habitacion = document.createElement('input');
+        id_habitacion.type = 'hidden';
+        id_habitacion.name = 'id_habitacion';
+        id_habitacion.value = childDataId;
+
+        //console.log(id_habitacion.value);
+
+
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrfmiddlewaretoken';
+        csrfInput.value = csrfToken;
+
+        form.appendChild(f_inicio);
+        form.appendChild(f_termino);
+        form.appendChild(cantidad);
+        form.appendChild(id_hotel);
+        form.appendChild(id_habitacion);
+        form.appendChild(csrfInput);
+
+        document.body.appendChild(form);
+     
+
+
+        form.submit();
+
+
+
+        
+
+    });
+
+
+
+
+
+</script>
+{% endblock %}

@@ -392,79 +392,6 @@
     // Datepicker
     // ------------------------------------------------------
 
-    // Default calendar namespaces
-    var dateFormat = "<span class='day'>d</span> <span class='month'>M</span> <span class='year'>yy</span>",
-        dateArrival = '#dateArrival input',
-        dateDeparture = '#dateDeparture input',
-        dateArrivalVal = '#dateArrival .date-value',
-        dateDepartureVal = '#dateDeparture .date-value';
-
-    // Show arrival calendar
-    $(dateArrival).datepicker({
-        minDate: 'D',
-        dateFormat: dateFormat,
-        // get value on selected date for departure
-        onSelect: function (txt, inst) {
-            // get arrival value
-            $(dateArrivalVal).html($(dateArrival).val());
-            // set date format
-            $(dateDepartureVal).html(txt);
-            // set day after
-            var NewDay = $(dateDepartureVal).find('.day'),
-                NewDayVal = NewDay.html();
-            NewDay.html(parseInt(NewDayVal) + 1);
-
-        },
-        onClose: function (selectedDate) {
-            var myDate = $(this).datepicker('getDate');
-            myDate.setDate(myDate.getDate() + 1);
-            // Set min-date value and day after on date departure
-            $(dateDeparture).datepicker("option", "minDate", myDate);
-        }
-    });
-
-    // Show departure calendar
-    $(dateDeparture).datepicker({
-        minDate: 'D+1',
-        dateFormat: dateFormat,
-        // get value on selected date for return
-        onSelect: function (txt, inst) {
-            $(dateDepartureVal).html(txt);
-            $(dateDepartureVal).html($(dateDeparture).val());
-        }
-    });
-
-    // set current date
-    $('.datepicker').datepicker('setDate', 'today');
-    // get current value from departure 
-    $(dateArrivalVal).html($(dateArrival).val());
-    // get current value from return
-    $(dateDepartureVal).html($(dateDeparture).val());
-    // hide return input field
-    updateGuestNumber();
-    // update number of guest list
-
-
-    // Guests 
-    // -------------------------------------------------------
-
-    var $guests = $('.guests'),
-        $guestList = $('.guests .guest-list');
-
-    // Guest list toogle event - dropdown
-    $('.guests .result').on('click', function (e) {
-
-        e.stopPropagation();
-        $guests.toggleClass("show");
-
-        if ($guests.hasClass('show')) {
-            $guestList.fadeIn();
-        }
-        else {
-            $guestList.fadeOut();
-        }
-
-    });
 
     // Close on page click
     $('.qty-apply').on("click", function (e) {
@@ -472,53 +399,17 @@
         $guests.removeClass("show");
     });
 
-    // Quantities (add remove guests numbers) 
-    // -------------------------------------------------------
-
-    $('.qty-plus').add('.qty-minus').on("click", function (e) {
-        e.preventDefault();
-
-        var $this = $(this),
-            fieldName = $this.attr('data-field'),
-            $input = $('input#' + fieldName);
-
-        var currentVal = parseInt($input.data('value'), 10),
-            ticketType = $input.data('tickettype');
-
-        if (!isNaN(currentVal)) {
-            var isChanged = false,
-                value = 0;
-
-            if ($this.hasClass('qty-plus') && currentVal < 12) {
-                value = currentVal + 1;
-                isChanged = true;
-            }
-
-            if ($this.hasClass('qty-minus') && currentVal > 0) {
-                value = currentVal - 1;
-                isChanged = true;
-            }
-
-            if (isChanged) {
-                $input.data('value', value);
-                $(ticketType).val(ticketType + '-' + value);
-                $input.val(value);
-                // Update guests number
-                updateGuestNumber();
-            }
-        }
-    });
 
     // Passangers result
-    function updateGuestNumber() {
-        var adult = $('#ticket-adult').val(),
-            children = $('#ticket-children').val(),
-            infants = $('#ticket-infants').val(),
-            qty = $('#qty-result');
-        qty.val(parseInt(adult, 10) + parseInt(children, 10) + parseInt(infants, 10));
-        // DOM results
-        $('#qty-result-text').text(qty.val());
-    }
+    // function updateGuestNumber() {
+    //     var adult = $('#ticket-adult').val(),
+    //         children = $('#ticket-children').val(),
+    //         infants = $('#ticket-infants').val(),
+    //         qty = $('#qty-result');
+    //     qty.val(parseInt(adult, 10) + parseInt(children, 10) + parseInt(infants, 10));
+    //     // DOM results
+    //     $('#qty-result-text').text(qty.val());
+    // }
 
 
 });
